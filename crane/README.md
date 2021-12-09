@@ -1,5 +1,20 @@
 # Crane Hackathon
 
+## Event #1 (December)
+
+### Agenda - day 1 (Monday, Dec 13th)
+* 9:00am Getting ready for today and tomorrow
+* 9:10am Quick update on Crane
+* 9:45-11:45am  Getting started together
+* 1pm-5pm Running through scenarios, answering questions, filing BZs, etc...
+
+### Agenda - day 2 (Tuesday, Dec 14th)
+* 9:00am Monday recap
+* 9:15am Discussion with Engineering, early feedback, etc.
+* 10am More hands-on on scenarios
+* 3pm Retro on what we learnt + Capture final feedback, questions, improvements, etc. 
+
+
 ## Links
 
 * [Agenda and Intro slides](https://docs.google.com/presentation/d/1pOZOTv_8p9lIKbp8-R5291OfyMGkdZDTT9AYxSVgJTU/edit?usp=sharing)
