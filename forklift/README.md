@@ -19,8 +19,8 @@ Our scenario instructions can be found in our [documentation scenarios](#).
 ## Topics
 
 * Migrations
-* VMware to OpenShift virt
-* RHV to OpenShift virt
+** VMware to OpenShift virt
+** RHV to OpenShift virt
 * OpenStack to OpenShift Virt - Basic features 
 * OpenStack to OpenShift Virt - Beyond virtual machines
 * Migrating network config for seamless VM migrations
