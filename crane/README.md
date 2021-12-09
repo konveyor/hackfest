@@ -2,6 +2,7 @@
 
 ## Links
 
+* [Agenda and Intro slides](https://docs.google.com/presentation/d/1pOZOTv_8p9lIKbp8-R5291OfyMGkdZDTT9AYxSVgJTU/edit?usp=sharing)
 * [Upstream Documentation](https://crane-docs.konveyor.io)
 * [Documentation Github](https://github.com/konveyor/crane-documentation): File issues with docs here
 * [Crane Github](https://github.com/konveyor/crane): File bugs or RFEs here,
