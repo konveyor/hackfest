@@ -15,3 +15,13 @@ all you'll need to bring with you is a cluster (we recommend [minikube](https://
 and a `kubectl` tool.
 
 Our scenario instructions can be found in our [documentation scenarios](#).
+
+## Topics
+
+* Migrations
+* VMware to OpenShift virt
+* RHV to OpenShift virt
+* OpenStack to OpenShift Virt - Basic features 
+* OpenStack to OpenShift Virt - Beyond virtual machines
+* Migrating network config for seamless VM migrations
+* OPAL - A hint of analytics in your MTV coffee
