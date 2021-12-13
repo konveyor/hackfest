@@ -12,7 +12,7 @@
 * 9:00am Monday recap
 * 9:15am Discussion with Engineering, early feedback, etc.
 * 10am More hands-on on scenarios
-* 3pm Retro on what we learnt + Capture final feedback, questions, improvements, etc. 
+* 3pm Retro on what we learned + Capture final feedback, questions, improvements, etc. 
 
 
 ## Links
@@ -41,6 +41,9 @@ fair warning, this path has significantly less usage.
 * Have [jq](https://github.com/stedolan/jq) installed on your system and available
 inside of your path.
 
+* Have [yq](https://github.com/mikefarah/yq) installed on your system and available
+inside of your path.
+
 ## Some background
 
 Crane itself is a cli tool that's designed to help users with application
@@ -62,6 +65,22 @@ do useful things is called [crane-runner](https://github.com/konveyor/crane-runn
 
 During this hackfest, we'll use crane-runner and these Tekton tasks to run
 crane within your cluster, and execute migrations.
+
+## Additional Resources
+
+* Tekton has excellent documentation. Feel free to check out
+    [Tekton's Overview](https://tekton.dev/docs/overview/). Crane Runner --
+    `crane` shoved into a container image -- primarily uses Tekton's
+    ClusterTasks, TaskRuns, and PipelineRuns.
+* [Kustomize](https://tekton.dev/docs/overview/) came out of the
+    ["Declarative Application Management" Whitepaper](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/declarative-application-management.md)
+    by Brian Grant. It's primary benefits are 1) built-in directly to `kubectl`
+    command line tool (the `--kustomize` flag on create/apply) 2) allows for
+    kustomization of application without modifying the base manifests and 3) no
+    special templating layer. We envision Crane Runner leveraging Kustomize as a
+    mechanism for _adding back_ cluster specific details on "destination"
+    clusters.
+* [Argo CD](https://argo-cd.readthedocs.io/en/stable/)
 
 ## Scenarios
 
