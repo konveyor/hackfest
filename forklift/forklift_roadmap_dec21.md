@@ -50,6 +50,15 @@ Provide a regex builder from the identified naming issues in the inventory. For 
 
 How to generate the same networks in OpenShift that were available in source?
 
+## Migrating GPU enabled VMs
+
+ From Peter Lauterbach:
+“Thinking more about the AI.ML use case that is virtualized on vSphere.  Customers already have GPU enabled VMs that they are using in AI/ML pipelines for things like training models.
+
+Is it possible to detect this configuration, and map it into a similarly configured VM on the OCP side? Most likely they would be using the same GPU hardware and driver on both sides, but possibly new models on the OCP side.
+
+I'm trying to elevate my thinking from just the VM mechanics perspective, to "how can we make it easier for customers to move entire applications (that are based on VMs), into OCP.”
+
 ## OpenStack Advanced Migration Features
 
 When looking at OpenStack and OpenShift, one can see many similarities. The main one is that they split the control and data planes with core services (mysql, oslo vs etcd, kubeapi), infrastructure services (metrics, logging….) and workload services (nova, neutron… vs. pod scheduler, multus…). This approach is what allows them to scale massively and offer a broad ecosystem of services.
@@ -84,12 +93,3 @@ A strong emphasis should also be put on the validation rules and user experience
 
 About using common APIs to extract data … but which common APIs? OSP 13 and 16 and their underlying versions? All the in betweens? Which ones align to Windriver, Huawei, and friends? These details will matter and may result in you not having coverage where you think you do when speaking to third party solutions.
 
-
-## Migrating GPU enabled VMs
-
- From Peter Lauterbach:
-“Thinking more about the AI.ML use case that is virtualized on vSphere.  Customers already have GPU enabled VMs that they are using in AI/ML pipelines for things like training models.
-
-Is it possible to detect this configuration, and map it into a similarly configured VM on the OCP side? Most likely they would be using the same GPU hardware and driver on both sides, but possibly new models on the OCP side.
-
-I'm trying to elevate my thinking from just the VM mechanics perspective, to "how can we make it easier for customers to move entire applications (that are based on VMs), into OCP.”
