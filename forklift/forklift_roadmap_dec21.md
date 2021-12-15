@@ -50,16 +50,6 @@ Provide a regex builder from the identified naming issues in the inventory. For 
 
 How to generate the same networks in OpenShift that were available in source?
 
-## OPAL
-
-https://issues.redhat.com/browse/MTV-17 
-Video: https://drive.google.com/drive/folders/1awd2DD-cIyu5d1BK7lhKbD200SakRtX7 
-
-Actions for Product Manager
-Define user flow related to how data is gathered for VMs and resources (network and storage)
-Paths to decide and create migration plans.
-
-
 ## OpenStack Advanced Migration Features
 
 When looking at OpenStack and OpenShift, one can see many similarities. The main one is that they split the control and data planes with core services (mysql, oslo vs etcd, kubeapi), infrastructure services (metrics, logging….) and workload services (nova, neutron… vs. pod scheduler, multus…). This approach is what allows them to scale massively and offer a broad ecosystem of services.
@@ -103,71 +93,3 @@ About using common APIs to extract data … but which common APIs? OSP 13 and 16
 Is it possible to detect this configuration, and map it into a similarly configured VM on the OCP side? Most likely they would be using the same GPU hardware and driver on both sides, but possibly new models on the OCP side.
 
 I'm trying to elevate my thinking from just the VM mechanics perspective, to "how can we make it easier for customers to move entire applications (that are based on VMs), into OCP.”
-
-## Ansible Hooks Image Builder
-Use cases draft
-Modify external services related to the VM 
-Load Balancer
-DNS
-Monitoring
-Modify the VM itself 
-Remove unneeded software (i.e. agents, virt-tools, driver related apps)
-Apply patches or upgrades (i.e. to adapt to target environment)
-Add software (i.e. agents, virt-tools, extra drivers)
-Change IP addressing (i.e. not possible to have routed VLANs)
-Change VM Attributes (name, cores, memory) ? [Note: Not sure if this is for hooks]
- 
-Run tests
-Custom pre-migration checks
-Automated conformance post-migration testing 
-
-Under consideration: Requiring external Tower to execute hooks
-Note: In some cases like wanting to keep IPs assigned to MAC addresses, the pre-migration runs will be required.  It may be too much to request the user to do.
-
-### Existing Ansible roles and playbooks:
-https://github.com/fdupont-redhat/ims-ansible-playbooks
-https://github.com/fdupont-redhat/ims.premigration-rhel
-https://github.com/fdupont-redhat/ims.premigration-windows
-https://github.com/fdupont-redhat/ims.postmigration-convert2rhel
-
-The hooks as implemented in MTC proposes two experiences:
-Run a custom container image provided by the user. This is the most versatile approach, as the user has complete freedom with regards to the technology in the container image and how it implements the hook actions.
-Execute an Ansible playbook provided by the user as a single file. Behind the scenes, it will run a pod based on a Red Hat-customized Ansible Runner image. This reduces the complexity of creating and publishing a container image by proposing an opinionated automation solution, Ansible.
-
-Our experience with Ansible in the field has shown that Ansible playbooks can be more complex than a single file. It is very common that the playbook will call custom roles, filters, plugins and even modules. These assets are frequently managed in a source code management (SCM) system and can be published in Ansible Galaxy, allowing for a consistent company-wide automation framework, reused across all entities. This is why we want to expand the hooks user experience to provide an opinionated integration with Git and Ansible Galaxy for these customers.
-
-One important consideration is reproducibility. When users run a migration plan, they expect that the same hooks are applied to all the virtual machines in the plan. If the assets are retrieved at run time and some virtual machine migrations are postponed by the throttling mechanism, it may happen that the hook behaves differently because some asset has changed between the plan start and a given virtual machine migration. The solution must provide a mechanism to ensure that all the virtual machines in a plan run the same hooks.
-
-### Possible Implementations
-Use the current MTC implementation: It doesn’t seem to cover all the needs of MTV
-Implement an “Ansible Runner” for MTV: Could mean an important investment of time. May affect delivery dates.
-It may become a joint project with MTC by extending the capabilities that they have. It can even become a module for anything requiring automation within OpenShift.
-Request to have an external Ansible Tower: Putting a lot of load on Users.
-Providing an initial playbook to prepare tower and example playbooks would reduce the effort to have it running
-Could also mean a Tower upsell.
-Embed AWX/Tower: Difficult from the maintenance point of view. It will increase the footprint of the tool a lot
-Already tried by CloudForms and ended up in reimplementation as Ansible Runner.
-
-### Feedback received so far
-The current implementation of hooks in MTC does not fit completely on what MTV needs. There is an increased complexity in managing a different platform, and having to handle different credentials (VMs and external services). We will need to add more capabilities to that feature
-The embedded implementation, a la "Ansible Runner" is the preferred choice as the tool will include all that is required to perform a migration, and will suit customers with a low level of automation (or automating with other tools)
-Using an external Ansible Tower would help for large migrations and is a good feature to be considered down the path but seems to be an overkill to consider it the only option.
-Embedded Ansible Tower/AWX was discarded as unmaintainable and difficult to handle (references to CloudForms initial implementation).
-
-The suggested path, with current feedback, is to extend the capabilities of the MTC implementation to cover the needs of VMs. Having a common component for MTV and MTC to be considered.
-
-### Considerations
-External Tower is too complex for mid size migrations, and embedding it will be a maintenance issue.
-The embedded use case will be the way to go. Ansible Runner could be considered an example.
-Having a user provided container image for the user to run, does not seem to apply.
-We will need to consider that the automation will be: 
-Making Changes in the VM ot be migrated 
-Making changes in the external infra (LB, DNS, Monitoring)
-The number of integrations to cover is much larger than with containers
-The complexity of playbooks will be greater than with containers and will be very likely hosted in a git repository
-We still want to make the user be able to paste variables (and credentials) for each run to customize them.
-
-### Solution
-After reviewing the considerations we worked on this set of Mockups to cover the needs and situation found: Mockups for MTV 2.1 latest 
-
-For a given playbook, the same set of playbook/dependencies must be run on each VM in a given plan for a given run.
