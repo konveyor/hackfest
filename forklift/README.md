@@ -17,7 +17,7 @@ Introduction to the Forklift Project, it's sub-projects and how to interact with
 Review on documentation structure, style and how to contribute ([slides](https://github.com/konveyor/hackfest/blob/main/forklift/Forklift%20Documentation.pdf))
 
 ### Validation Service
-What is is, how it works and ow to create your own custom rules for it.
+What is is, how it works and ow to create your own custom rules for it. ([slides](https://github.com/konveyor/hackfest/blob/main/forklift/Forklift%20Validation%20Service.pdf))
 
 ### Roadmap review
 Review canddates for roadmap in order to be evaluated.
