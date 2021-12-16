@@ -14,7 +14,7 @@ using the dedicated issue templates.
 Introduction to the Forklift Project, it's sub-projects and how to interact with it. ([slides](https://github.com/konveyor/hackfest/blob/main/forklift/Forklift%20Hackathon%20Introduction%20-%202021-12-16.pdf))
 
 ### Documentation
-Review on documentation structure, style and how to contribute
+Review on documentation structure, style and how to contribute ([slides](https://github.com/konveyor/hackfest/blob/main/forklift/Forklift%20Documentation.pdf))
 
 ### Validation Service
 What is is, how it works and ow to create your own custom rules for it.
