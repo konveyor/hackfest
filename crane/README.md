@@ -2,13 +2,13 @@
 
 ## Event #1 (December)
 
-### Agenda - day 1 (Monday, Dec 13th)
+### Agenda - day 1 (Monday, Jan 31st)
 * 9:00am Getting ready for today and tomorrow
 * 9:10am Quick update on Crane
 * 9:45-11:45am  Getting started together
 * 1pm-5pm Running through scenarios, answering questions, filing BZs, etc...
 
-### Agenda - day 2 (Tuesday, Dec 14th)
+### Agenda - day 2 (Tuesday, Feb 1st)
 * 9:00am Monday recap
 * 9:15am Discussion with Engineering, early feedback, etc.
 * 10am More hands-on on scenarios
