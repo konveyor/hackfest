@@ -6,6 +6,7 @@
 - [Documentation Github repository](https://github.com/konveyor/tackle-documentation): File issues with docs here
 - [Tackle Github repository](https://github.com/konveyor/tackle): File bugs or RFEs here,
 using the dedicated issue templates.
+- [Tackle Workshop slides](https://docs.google.com/presentation/d/1zBstluASgDOs8Ju2vjtT5z-Ho2nIniFHXSDJk9DmfhY)
 
 
 ## Prerequisites
