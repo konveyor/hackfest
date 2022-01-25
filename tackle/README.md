@@ -107,11 +107,11 @@ A complete overview of the services or modules currently available on the Tackle
 
 ## Workshop
 
-Once Tackle is up and running in you Kubernetes cluster, [login](https://tackle-docs.konveyor.io/documentation/doc-installing-and-using-tackle/master/index.html#accessing-console_tackle) to start working on the practical exercise to get familiar with the tool.
+Once Tackle is up and running in you Kubernetes cluster, [login](https://tackle-docs.konveyor.io/documentation/doc-installing-and-using-tackle/master/index.html#accessing-console_tackle) to start working on the practical exercise to get familiar with the tool. **Links on the description of each step will lead to the section in the official documentation that explains how to perform the described operation.** If something is not clear enough, missing or simply wrong, **please [open an issue in the documentation repository](https://github.com/konveyor/tackle-documentation/issues)**. This would be of great help to make sure our docs are useful for users wishing to start using Tackle.
 
 ### Setting up the controls
 
-These first steps will be focused in modeling the organization we will be working with inside the Tackle tool. Links on the description of each step will lead to the section in the official documentation that explains how to perform the described operation.
+These first steps will be focused in modeling the organization we will be working with inside the Tackle tool.
 
 First of all, we will [create a new job function](https://tackle-docs.konveyor.io/documentation/doc-installing-and-using-tackle/master/index.html#creating-job-function_tackle): CEO & Owner
 
