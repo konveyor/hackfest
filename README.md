@@ -16,7 +16,9 @@ Here is a script to help you setup two minikube clusters and the appropriate ipt
 ```bash
 curl -s "https://raw.githubusercontent.com/konveyor/crane/main/hack/minikube-clusters-start.sh" | bash
 ```
-NOTE: We also have had folks run through the scenarios on Mac machines, but fair warning, this path has significantly less usage.
+>**Note** - We also have had folks run through the scenarios on Mac machines, but fair warning, this path has significantly less usage.
+
+>**Note** - Tackle requires a more demanding Minikube instance. Details about how to configure Minikube for the Tackle scenario can be found [here](/tackle/README.md#installing-minikube).
 
 ## Crane specific prereqs:
 

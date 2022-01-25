@@ -1,0 +1,9 @@
+Record Type 1,Application Name,Description,Comments,Business Service,Dependency,Dependency Direction,Tag Type 1,Tag 1,Tag Type 2,Tag 2,Tag Type 3,Tag 3,Tag Type 4,Tag 4
+1,Customers,Customers management service,,Retail,,,Operating System,RHEL 8,Database,Oracle,Language,Java,Runtime,Tomcat
+1,Frontend,Retail portal,,Retail,,,Operating System,RHEL 8,,,Language,Javascript,,
+2,Frontend,,,,Gateway,southbound,,,,,,,,
+1,Gateway,API Gateway,,Retail,,,Operating System,RHEL 8,,,Language,Java,Runtime,Spring Boot
+1,Inventory,Inventory service,,Retail,,,Operating System,RHEL 8,Database,Postgresql,Language,Java,Runtime,Quarkus
+1,Orders,Orders service,,Retail,,,Operating System,RHEL 8,Database,Postgresql,Language,Java,Runtime,Spring Boot
+2,Orders,,,,Inventory,southbound,,,,,,,,
+2,Orders,,,,Customers,southbound,,,,,,,,
