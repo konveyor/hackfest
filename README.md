@@ -4,9 +4,10 @@
 
 * RHEL-family machine (Fedora 35, Centos 8, RHEL 8)
   - VM should suffice too. We recommend a minimum of 2vCPUs and 8GB of RAM. If using Amazon EC2 instance, we recommend a t2.large VM.
-* Podman
-* Kubectl
-* Minikube
+* Ensure the following tools are installed and available in the PATH:
+  * [podman](https://podman.io/getting-started/installation#linux-distributions)
+  * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+  * [minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 ### Minikube installation:
 
@@ -22,5 +23,9 @@ curl -s "https://raw.githubusercontent.com/konveyor/crane/main/hack/minikube-clu
 
 ## Crane specific prereqs:
 
-* jq (installed on your system and available inside of your path)
-* yq (installed on your system and available inside of your path)
+The crane scenarios utilize several additional tools. Ensure the binaries are
+installed to your PATH so they are accessible:
+
+* [kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/binaries/)
+* [jq](https://github.com/stedolan/jq)
+* [yq](https://github.com/mikefarah/yq)

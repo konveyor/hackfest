@@ -26,23 +26,9 @@ using the dedicated issue templates.
 
 ## Prerequisites
 
-* We recommend bringing a RHEL-family machine (Fedora 35, Centos 8, RHEL 8) with
-podman installed. A VM should work fine. You'll also need [minikube](https://minikube.sigs.k8s.io/docs/start/) available. It's convenient to just
-use the podman driver for minikube; it's lightweight and works great. We have
-some helper scripts that you will use to spawn a couple of minikube clusters
-to migrate between (let's call them src, dest), and we'll also set up some
-iptables network forwarding rules along with some in-cluster dns to ensure the clusters
-can route traffic to one another, and are able to resolve ingress. We also have
-scripts to help clean this up.
+See [top level prereqs](../README.md#prerequisites) to prepare your infrastructure needs.
 
-* NOTE: We also have had folks run through the scenarios on Mac machines, but
-fair warning, this path has significantly less usage.
-
-* Have [jq](https://github.com/stedolan/jq) installed on your system and available
-inside of your path.
-
-* Have [yq](https://github.com/mikefarah/yq) installed on your system and available
-inside of your path.
+The crane scenarios require some [additional tooling](../README.md#crane-specific-prereqs)
 
 ## Some background
 
