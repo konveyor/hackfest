@@ -143,7 +143,7 @@ Once we have all the stakeholder groups available, let's create another stakehol
 
 Finally, let's [create a business service](https://tackle-docs.konveyor.io/documentation/doc-installing-and-using-tackle/master/index.html#creating-business-service_tackle) named *Retail* under which all our applications for this workshop will lie:
 
-![Create business service](images/04_Create-stakeholder-simpson.png?raw=true "Create business service")
+![Create business service](images/05_Create-business-service.png?raw=true "Create business service")
 
 ### Managing the application portfolio
 
