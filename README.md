@@ -32,3 +32,6 @@ installed to your PATH so they are accessible:
 * [kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/binaries/)
 * [jq](https://github.com/stedolan/jq)
 * [yq](https://github.com/mikefarah/yq)
+
+## Code of Conduct
+Refer to Konveyor's Code of Conduct [here](https://github.com/konveyor/community/blob/main/CODE_OF_CONDUCT.md).
