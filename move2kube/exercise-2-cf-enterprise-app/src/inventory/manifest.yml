@@ -1,0 +1,8 @@
+---
+applications:
+- name: inventory
+  memory: 1G
+  instances: 1
+  buildpacks:
+    - https://github.com/cloudfoundry/java-buildpack
+  path: target/inventory-0.0.1-SNAPSHOT.jar

@@ -1,0 +1,108 @@
+move2kube:
+  services:
+    django:
+      "8080":
+        servicetype: Ingress
+        urlpath: /django
+      port: "8080"
+    golang:
+      "8080":
+        servicetype: Ingress
+        urlpath: /golang
+      ports:
+        - "8080"
+    java-gradle:
+      "8080":
+        servicetype: Ingress
+        urlpath: /java-gradle
+      childModules:
+        java-gradle:
+          port: "8080"
+      dockerfileType: build stage in every image
+      wartransformer: Tomcat
+    java-maven:
+      "8080":
+        servicetype: Ingress
+        urlpath: /java-maven
+      childModules:
+        java-maven:
+          port: "8080"
+      dockerfileType: build stage in every image
+      wartransformer: Tomcat
+    java-war:
+      "8080":
+        servicetype: Ingress
+        urlpath: /java-war
+      wartransformer: Tomcat
+    nodejs:
+      "8080":
+        servicetype: Ingress
+        urlpath: /nodejs
+      port: "8080"
+    php:
+      "8082":
+        servicetype: Ingress
+        urlpath: /
+    python:
+      "8080":
+        servicetype: Ingress
+        urlpath: /python
+      port: "8080"
+    ruby:
+      "8080":
+        servicetype: Ingress
+        urlpath: /ruby
+      port: "8080"
+    rust:
+      "8085":
+        servicetype: Ingress
+        urlpath: /rust
+      port: "8085"
+  spawncontainers: false
+  target:
+    default:
+      ingress:
+        ingressclassname: ""
+        tls: ""
+    imageregistry:
+  transformers:
+    types:
+      - ArgoCD
+      - Buildconfig
+      - CNBContainerizer
+      - CloudFoundry
+      - ClusterSelector
+      - ComposeAnalyser
+      - ComposeGenerator
+      - ContainerImagesPushScriptGenerator
+      - DockerfileDetector
+      - DockerfileImageBuildScript
+      - DockerfileParser
+      - DotNetCore-Dockerfile
+      - EarAnalyser
+      - EarRouter
+      - Golang-Dockerfile
+      - Gradle
+      - Jar
+      - Jboss
+      - Knative
+      - Kubernetes
+      - KubernetesVersionChanger
+      - Liberty
+      - Maven
+      - Nodejs-Dockerfile
+      - OperatorTransformer
+      - OperatorsFromTCA
+      - PHP-Dockerfile
+      - Parameterizer
+      - Python-Dockerfile
+      - ReadMeGenerator
+      - Ruby-Dockerfile
+      - Rust-Dockerfile
+      - Tekton
+      - Tomcat
+      - WarAnalyser
+      - WarRouter
+      - WinWebApp-Dockerfile
+      - ZuulAnalyser
+  transformerselector: ""

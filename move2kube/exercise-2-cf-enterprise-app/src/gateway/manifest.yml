@@ -1,0 +1,11 @@
+---
+applications:
+- name: gateway
+  memory: 1G
+  instances: 1
+  buildpacks:
+    - https://github.com/cloudfoundry/java-buildpack
+  path: target/gateway-2.0.0-SNAPSHOT.jar
+  env:
+    SPRING_PROFILES_ACTIVE: dev
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{ enabled: false }'
