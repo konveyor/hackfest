@@ -1,0 +1,592 @@
+apiVersion: move2kube.konveyor.io/v1alpha1
+kind: QACache
+spec:
+  solutions:
+    - id: move2kube.transformerselector
+      type: Input
+      description: Specify a Kubernetes style selector to select only the transformers that you want to run.
+      hints:
+        - Leave empty to select everything. This is the default.
+      default: ""
+      answer: ""
+    - id: move2kube.transformers.types
+      type: MultiSelect
+      description: 'Select all transformer types that you are interested in:'
+      hints:
+        - Services that don't support any of the transformer types you are interested in will be ignored.
+      options:
+        - ArgoCD
+        - Buildconfig
+        - CNBContainerizer
+        - CloudFoundry
+        - ClusterSelector
+        - ComposeAnalyser
+        - ComposeGenerator
+        - ContainerImagesPushScriptGenerator
+        - DockerfileDetector
+        - DockerfileImageBuildScript
+        - DockerfileParser
+        - DotNetCore-Dockerfile
+        - EarAnalyser
+        - EarRouter
+        - Golang-Dockerfile
+        - Gradle
+        - Jar
+        - Jboss
+        - Knative
+        - Kubernetes
+        - KubernetesVersionChanger
+        - Liberty
+        - Maven
+        - Nodejs-Dockerfile
+        - OperatorTransformer
+        - OperatorsFromTCA
+        - PHP-Dockerfile
+        - Parameterizer
+        - Python-Dockerfile
+        - ReadMeGenerator
+        - Ruby-Dockerfile
+        - Rust-Dockerfile
+        - Tekton
+        - Tomcat
+        - WarAnalyser
+        - WarRouter
+        - WinConsoleApp-Dockerfile
+        - WinSLWebApp-Dockerfile
+        - WinWebApp-Dockerfile
+        - ZuulAnalyser
+      default:
+        - OperatorTransformer
+        - DotNetCore-Dockerfile
+        - EarRouter
+        - ComposeGenerator
+        - Gradle
+        - WarAnalyser
+        - CNBContainerizer
+        - KubernetesVersionChanger
+        - Python-Dockerfile
+        - ClusterSelector
+        - WinWebApp-Dockerfile
+        - Jar
+        - ComposeAnalyser
+        - CloudFoundry
+        - Liberty
+        - Parameterizer
+        - DockerfileDetector
+        - ReadMeGenerator
+        - Nodejs-Dockerfile
+        - Ruby-Dockerfile
+        - Tekton
+        - Tomcat
+        - DockerfileParser
+        - Jboss
+        - Maven
+        - Rust-Dockerfile
+        - PHP-Dockerfile
+        - Buildconfig
+        - ZuulAnalyser
+        - WarRouter
+        - ArgoCD
+        - ContainerImagesPushScriptGenerator
+        - EarAnalyser
+        - OperatorsFromTCA
+        - Kubernetes
+        - Golang-Dockerfile
+        - DockerfileImageBuildScript
+        - Knative
+      answer:
+        - ArgoCD
+        - Buildconfig
+        - CNBContainerizer
+        - CloudFoundry
+        - ClusterSelector
+        - ComposeAnalyser
+        - ComposeGenerator
+        - ContainerImagesPushScriptGenerator
+        - DockerfileDetector
+        - DockerfileImageBuildScript
+        - DockerfileParser
+        - DotNetCore-Dockerfile
+        - EarAnalyser
+        - EarRouter
+        - Golang-Dockerfile
+        - Gradle
+        - Jar
+        - Jboss
+        - Knative
+        - Kubernetes
+        - KubernetesVersionChanger
+        - Liberty
+        - Maven
+        - Nodejs-Dockerfile
+        - OperatorTransformer
+        - OperatorsFromTCA
+        - PHP-Dockerfile
+        - Parameterizer
+        - Python-Dockerfile
+        - ReadMeGenerator
+        - Ruby-Dockerfile
+        - Rust-Dockerfile
+        - Tekton
+        - Tomcat
+        - WarAnalyser
+        - WarRouter
+        - WinWebApp-Dockerfile
+        - ZuulAnalyser
+    - id: move2kube.spawncontainers
+      type: Confirm
+      description: Allow spawning containers?
+      hints:
+        - If this setting is set to false, those transformers that rely on containers will not work.
+      default: false
+      answer: false
+    - id: move2kube.services.[].enable
+      type: MultiSelect
+      description: 'Select all services that are needed:'
+      hints:
+        - The services unselected here will be ignored.
+      options:
+        - customers
+        - frontend
+        - gateway
+        - inventory
+        - orders
+      default:
+        - customers
+        - frontend
+        - gateway
+        - inventory
+        - orders
+      answer:
+        - customers
+        - frontend
+        - gateway
+        - inventory
+        - orders
+    - id: move2kube.services."customers".containerizationoption
+      type: MultiSelect
+      description: 'Select the transformer to use for containerizing the ''customers'' service :'
+      options:
+        - Maven
+      default:
+        - Maven
+      answer:
+        - Maven
+    - id: move2kube.services."frontend".containerizationoption
+      type: MultiSelect
+      description: 'Select the transformer to use for containerizing the ''frontend'' service :'
+      options:
+        - Nodejs-Dockerfile
+      default:
+        - Nodejs-Dockerfile
+      answer:
+        - Nodejs-Dockerfile
+    - id: move2kube.services."gateway".containerizationoption
+      type: MultiSelect
+      description: 'Select the transformer to use for containerizing the ''gateway'' service :'
+      options:
+        - Maven
+      default:
+        - Maven
+      answer:
+        - Maven
+    - id: move2kube.services."inventory".containerizationoption
+      type: MultiSelect
+      description: 'Select the transformer to use for containerizing the ''inventory'' service :'
+      options:
+        - Maven
+      default:
+        - Maven
+      answer:
+        - Maven
+    - id: move2kube.services."orders".containerizationoption
+      type: MultiSelect
+      description: 'Select the transformer to use for containerizing the ''orders'' service :'
+      options:
+        - Maven
+      default:
+        - Maven
+      answer:
+        - Maven
+    - id: move2kube.services."customers".dockerfileType
+      type: Select
+      description: What type of Dockerfiles should be generated for the service 'customers'?
+      hints:
+        - '[no build stage] There is no build stage. Dockerfiles will only contain the run stage. The jar/war/ear files will need to be built and present in the file system already, for them to get copied into the container.'
+        - '[build stage in base image] Put the build stage in a separate Dockerfile and create a base image.'
+        - '[build stage in every image] Put the build stage in every Dockerfile to make it self contained. (Warning: This may cause one build per Dockerfile.)'
+      options:
+        - no build stage
+        - build stage in base image
+        - build stage in every image
+      default: build stage in base image
+      answer: build stage in every image
+    - id: move2kube.services."customers".childModules."customers".springBootProfiles
+      type: MultiSelect
+      description: 'Select the spring boot profiles for the service ''customers'' :'
+      hints:
+        - select all the profiles that are applicable
+      options:
+        - dev-inmemorydb
+        - local
+        - prod-externaldb
+      default:
+        - dev-inmemorydb
+        - local
+        - prod-externaldb
+      answer:
+        - dev-inmemorydb
+    - id: move2kube.services."customers".childModules."customers".port
+      type: Select
+      description: 'Select the port to be exposed for the ''"customers".childModules."customers"'' service :'
+      hints:
+        - Select 'Other' if you want to expose the service using a different port.
+      options:
+        - "8080"
+        - Other (specify custom option)
+      default: "8080"
+      answer: "8080"
+    - id: move2kube.services."customers".mavenProfiles
+      type: MultiSelect
+      description: Select the maven profiles to use for the 'customers' service
+      hints:
+        - The selected maven profiles will be used during the build.
+      options:
+        - local
+        - dev-inmemorydb
+        - prod-externaldb
+      default:
+        - local
+        - dev-inmemorydb
+        - prod-externaldb
+      answer:
+        - dev-inmemorydb
+    - id: move2kube.services."gateway".dockerfileType
+      type: Select
+      description: What type of Dockerfiles should be generated for the service 'gateway'?
+      hints:
+        - '[no build stage] There is no build stage. Dockerfiles will only contain the run stage. The jar/war/ear files will need to be built and present in the file system already, for them to get copied into the container.'
+        - '[build stage in base image] Put the build stage in a separate Dockerfile and create a base image.'
+        - '[build stage in every image] Put the build stage in every Dockerfile to make it self contained. (Warning: This may cause one build per Dockerfile.)'
+      options:
+        - no build stage
+        - build stage in base image
+        - build stage in every image
+      default: build stage in base image
+      answer: build stage in every image
+    - id: move2kube.services."gateway".childModules."gateway".springBootProfiles
+      type: MultiSelect
+      description: 'Select the spring boot profiles for the service ''gateway'' :'
+      hints:
+        - select all the profiles that are applicable
+      options:
+        - dev
+        - local
+        - prod
+      default:
+        - dev
+        - local
+        - prod
+      answer:
+        - dev
+    - id: move2kube.services."gateway".childModules."gateway".port
+      type: Select
+      description: 'Select the port to be exposed for the ''"gateway".childModules."gateway"'' service :'
+      hints:
+        - Select 'Other' if you want to expose the service using a different port.
+      options:
+        - "8080"
+        - Other (specify custom option)
+      default: "8080"
+      answer: "8080"
+    - id: move2kube.services."gateway".mavenProfiles
+      type: MultiSelect
+      description: Select the maven profiles to use for the 'gateway' service
+      hints:
+        - The selected maven profiles will be used during the build.
+      options:
+        - local
+        - dev
+        - prod
+      default:
+        - local
+        - dev
+        - prod
+      answer:
+        - dev
+    - id: move2kube.services."inventory".dockerfileType
+      type: Select
+      description: What type of Dockerfiles should be generated for the service 'inventory'?
+      hints:
+        - '[no build stage] There is no build stage. Dockerfiles will only contain the run stage. The jar/war/ear files will need to be built and present in the file system already, for them to get copied into the container.'
+        - '[build stage in base image] Put the build stage in a separate Dockerfile and create a base image.'
+        - '[build stage in every image] Put the build stage in every Dockerfile to make it self contained. (Warning: This may cause one build per Dockerfile.)'
+      options:
+        - no build stage
+        - build stage in base image
+        - build stage in every image
+      default: build stage in base image
+      answer: build stage in every image
+    - id: move2kube.services."inventory".childModules."inventory".springBootProfiles
+      type: MultiSelect
+      description: 'Select the spring boot profiles for the service ''inventory'' :'
+      hints:
+        - select all the profiles that are applicable
+      options:
+        - dev-inmemorydb
+        - local
+        - prod-externaldb
+      default:
+        - dev-inmemorydb
+        - local
+        - prod-externaldb
+      answer:
+        - dev-inmemorydb
+    - id: move2kube.services."inventory".childModules."inventory".port
+      type: Select
+      description: 'Select the port to be exposed for the ''"inventory".childModules."inventory"'' service :'
+      hints:
+        - Select 'Other' if you want to expose the service using a different port.
+      options:
+        - "8080"
+        - Other (specify custom option)
+      default: "8080"
+      answer: "8080"
+    - id: move2kube.services."inventory".mavenProfiles
+      type: MultiSelect
+      description: Select the maven profiles to use for the 'inventory' service
+      hints:
+        - The selected maven profiles will be used during the build.
+      options:
+        - local
+        - dev-inmemorydb
+        - prod-externaldb
+      default:
+        - local
+        - dev-inmemorydb
+        - prod-externaldb
+      answer:
+        - dev-inmemorydb
+    - id: move2kube.services."orders".dockerfileType
+      type: Select
+      description: What type of Dockerfiles should be generated for the service 'orders'?
+      hints:
+        - '[no build stage] There is no build stage. Dockerfiles will only contain the run stage. The jar/war/ear files will need to be built and present in the file system already, for them to get copied into the container.'
+        - '[build stage in base image] Put the build stage in a separate Dockerfile and create a base image.'
+        - '[build stage in every image] Put the build stage in every Dockerfile to make it self contained. (Warning: This may cause one build per Dockerfile.)'
+      options:
+        - no build stage
+        - build stage in base image
+        - build stage in every image
+      default: build stage in base image
+      answer: build stage in every image
+    - id: move2kube.services."orders".childModules."orders".springBootProfiles
+      type: MultiSelect
+      description: 'Select the spring boot profiles for the service ''orders'' :'
+      hints:
+        - select all the profiles that are applicable
+      options:
+        - dev-inmemorydb
+        - local
+        - prod-externaldb
+      default:
+        - dev-inmemorydb
+        - local
+        - prod-externaldb
+      answer:
+        - dev-inmemorydb
+    - id: move2kube.services."orders".childModules."orders".port
+      type: Select
+      description: 'Select the port to be exposed for the ''"orders".childModules."orders"'' service :'
+      hints:
+        - Select 'Other' if you want to expose the service using a different port.
+      options:
+        - "8080"
+        - Other (specify custom option)
+      default: "8080"
+      answer: "8080"
+    - id: move2kube.services."orders".mavenProfiles
+      type: MultiSelect
+      description: Select the maven profiles to use for the 'orders' service
+      hints:
+        - The selected maven profiles will be used during the build.
+      options:
+        - local
+        - dev-inmemorydb
+        - prod-externaldb
+      default:
+        - local
+        - dev-inmemorydb
+        - prod-externaldb
+      answer:
+        - dev-inmemorydb
+    - id: move2kube.services."customers".wartransformer
+      type: Select
+      description: Select the transformer to use for the "customers" service
+      options:
+        - Jboss
+        - Liberty
+        - Tomcat
+      default: Jboss
+      answer: Tomcat
+    - id: move2kube.services."frontend".port
+      type: Select
+      description: 'Select the port to be exposed for the ''"frontend"'' service :'
+      hints:
+        - Select 'Other' if you want to expose the service using a different port.
+      options:
+        - "8080"
+        - Other (specify custom option)
+      default: "8080"
+      answer: "8080"
+    - id: move2kube.target.imageregistry.url
+      type: Select
+      description: 'Enter the URL of the image registry where the new images should be pushed : '
+      hints:
+        - You can always change it later by changing the yamls.
+      options:
+        - Other (specify custom option)
+        - quay.io
+        - registry-1.docker.io
+        - index.docker.io
+        - registry.cirrus.ibm.com
+        - registry.ng.bluemix.net
+        - registry.redhat.io
+        - us.icr.io
+        - icr.io
+      default: quay.io
+      answer: quay.io
+    - id: move2kube.target.imageregistry.namespace
+      type: Input
+      description: 'Enter the namespace where the new images should be pushed : '
+      hints:
+        - 'Ex : myproject'
+      default: myproject
+      answer: myproject
+    - id: move2kube.target."default".clustertype
+      type: Select
+      description: 'Choose the cluster type:'
+      hints:
+        - Choose the cluster type you would like to target
+      options:
+        - AWS-EKS
+        - Azure-AKS
+        - GCP-GKE
+        - IBM-IKS
+        - IBM-Openshift
+        - Kubernetes
+        - Openshift
+      default: Kubernetes
+      answer: Kubernetes
+    - id: move2kube.services."frontend"."8080".servicetype
+      type: Select
+      description: What kind of service/ingress should be created for the service frontend's 8080 port?
+      hints:
+        - Choose Ingress if you want a ingress/route resource to be created
+      options:
+        - Ingress
+        - LoadBalancer
+        - NodePort
+        - ClusterIP
+        - Don't create service
+      default: Ingress
+      answer: Ingress
+    - id: move2kube.services."frontend"."8080".urlpath
+      type: Input
+      description: Specify the ingress path to expose the service frontend's 8080 port on?
+      hints:
+        - Leave out leading / to use first part as subdomain
+      default: /frontend
+      answer: frontend-app
+    - id: move2kube.minreplicas
+      type: Input
+      description: Provide the minimum number of replicas each service should have
+      hints:
+        - If the value is 0 pods won't be started by default
+      default: "2"
+      answer: "2"
+    - id: move2kube.target.imageregistry."quay.io".logintype
+      type: Select
+      description: '[quay.io] What type of container registry login do you want to use?'
+      hints:
+        - Docker login from config mode, will use the default config from your local machine.
+      options:
+        - use an existing pull secret
+        - no authentication
+        - username and password
+        - use the credentials from the docker config.json file
+      default: use the credentials from the docker config.json file
+      answer: no authentication
+    - id: move2kube.target."default".ingress.ingressclassname
+      type: Input
+      description: Provide the Ingress class name for ingress
+      hints:
+        - Leave empty to use the cluster default
+      default: ""
+      answer: ""
+    - id: move2kube.target."default".ingress.host
+      type: Input
+      description: Provide the ingress host domain
+      hints:
+        - Ingress host domain is part of service URL
+      default: myproject.com
+      answer: myproject.com
+    - id: move2kube.target."default".ingress.tls
+      type: Input
+      description: Provide the TLS secret for ingress
+      hints:
+        - Leave empty to use http
+      default: ""
+      answer: ""
+    - id: move2kube.services."customers"."8080".servicetype
+      type: Select
+      description: What kind of service/ingress should be created for the service customers's 8080 port?
+      hints:
+        - Choose Ingress if you want a ingress/route resource to be created
+      options:
+        - Ingress
+        - LoadBalancer
+        - NodePort
+        - ClusterIP
+        - Don't create service
+      default: Ingress
+      answer: ClusterIP
+    - id: move2kube.services."orders"."8080".servicetype
+      type: Select
+      description: What kind of service/ingress should be created for the service orders's 8080 port?
+      hints:
+        - Choose Ingress if you want a ingress/route resource to be created
+      options:
+        - Ingress
+        - LoadBalancer
+        - NodePort
+        - ClusterIP
+        - Don't create service
+      default: Ingress
+      answer: ClusterIP
+    - id: move2kube.services."inventory"."8080".servicetype
+      type: Select
+      description: What kind of service/ingress should be created for the service inventory's 8080 port?
+      hints:
+        - Choose Ingress if you want a ingress/route resource to be created
+      options:
+        - Ingress
+        - LoadBalancer
+        - NodePort
+        - ClusterIP
+        - Don't create service
+      default: Ingress
+      answer: ClusterIP
+    - id: move2kube.services."gateway"."8080".servicetype
+      type: Select
+      description: What kind of service/ingress should be created for the service gateway's 8080 port?
+      hints:
+        - Choose Ingress if you want a ingress/route resource to be created
+      options:
+        - Ingress
+        - LoadBalancer
+        - NodePort
+        - ClusterIP
+        - Don't create service
+      default: Ingress
+      answer: ClusterIP

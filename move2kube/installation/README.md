@@ -3,13 +3,13 @@
 ## Installing Move2Kube CLI
 
 ```console
-$ MOVE2KUBE_TAG='v0.4.0-alpha.0' bash <(curl https://raw.githubusercontent.com/konveyor/move2kube/main/scripts/install.sh)
+$ MOVE2KUBE_TAG='v0.3.4' bash <(curl https://raw.githubusercontent.com/konveyor/move2kube/main/scripts/install.sh)
 ```
 
 ## Running Move2Kube UI
 
 ```console
-$ docker run --rm -it -p 8080:8080 quay.io/konveyor/move2kube-ui:v0.4.0-alpha.0
+$ docker run --rm -it -p 8080:8080 quay.io/konveyor/move2kube-ui:v0.3.4
 ```
 
 After executing the above command, the Move2Kube web interface can be accessed at `http://localhost:8080/`.
