@@ -1,0 +1,60 @@
+move2kube:
+  services:
+    customers:
+      "8080":
+        servicetype: ClusterIP
+      childModules:
+        customers:
+          port: "8080"
+          springBootProfiles:
+            - dev-inmemorydb
+      dockerfileType: build stage in every image
+      mavenProfiles:
+        - dev-inmemorydb
+      wartransformer: Tomcat
+    frontend:
+      "8080":
+        servicetype: Ingress
+        urlpath: frontend-app
+      port: "8080"
+    gateway:
+      "8080":
+        servicetype: ClusterIP
+      childModules:
+        gateway:
+          port: "8080"
+          springBootProfiles:
+            - dev
+      dockerfileType: build stage in every image
+      mavenProfiles:
+        - dev
+    inventory:
+      "8080":
+        servicetype: ClusterIP
+      childModules:
+        inventory:
+          port: "8080"
+          springBootProfiles:
+            - dev-inmemorydb
+      dockerfileType: build stage in every image
+      mavenProfiles:
+        - dev-inmemorydb
+    orders:
+      "8080":
+        servicetype: ClusterIP
+      childModules:
+        orders:
+          port: "8080"
+          springBootProfiles:
+            - dev-inmemorydb
+      dockerfileType: build stage in every image
+      mavenProfiles:
+        - dev-inmemorydb
+  spawncontainers: false
+  target:
+    default:
+      ingress:
+        ingressclassname: ""
+        tls: ""
+    imageregistry:
+  transformerselector: ""
