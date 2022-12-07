@@ -5,7 +5,7 @@
 1. Run the transform phase directly and answer the questions that Move2Kube asks.
 
     ```console
-    cd exercise-2--cf-enterprise-app
+    cd exercise-2-cf-enterprise-app
     ```
 
     ```console

@@ -1,13 +1,11 @@
-# Writing the Transformation Logic in a Python-like Language using the Starlark Transformer
+# Adding custom annotations to the Kubernetes YAMLs using the Starlark-based Transformer
 
 A lot of the common transformations are already covered by the transformers that are built into Move2Kube.
 However, sometimes we need to perform very custom transformations on the input (like adding labels or annotations to the K8s yamls, conditionally changing the replica count for certain deployments based on fields in the yaml, changing the storage classes of certain PVCs after asking the user, etc.).
 
-Move2Kube provides us a way to write the logic for these transformations in a Python-like language called [Starlark](https://docs.bazel.build/versions/2.1.0/skylark/language.html) . Same as the previous tutorials we provide this custom transformer to Move2Kube using the `--customizations` flag.
-
+Move2Kube provides us a way to write the logic for these transformations in a Python-like language called [Starlark](https://docs.bazel.build/versions/2.1.0/skylark/language.html) . Same as the previous tutorials we provide this custom transformer to Move2Kube using the `--customizations` or `-c` flag.
 
 A `Starlark` class based transformer allows for writing a full fledged transformer in Starlark simply by implementing the `directory_detect` and `transform` functions.
-
 
 Examples use-cases:
 - [add-custom-files-directories-in-custom-locations](https://github.com/konveyor/move2kube-transformers/tree/main/add-custom-files-directories-in-custom-locations)
@@ -73,10 +71,7 @@ Move2Kube provides variables which expose values required by the transformer.
 
 ## Steps
 
-### Adding custom annotations to Kubernetes YAMLs
-
-In this example, we illustrate how we could add an annotation specifying the ingress class to an Ingress yaml.
-
+Let's see how we can add an annotation specifying the ingress class to the Ingress yaml.
 
 1. Let's start by going into the exercise directory. We will assume all commands are executed within this directory.
     ```console
