@@ -2,6 +2,8 @@
 
 ## Installing Move2Kube CLI
 
+You can directly download the Move2Kube binary for your local machine matching your OS/arch from [here](https://github.com/konveyor/move2kube/releases/tag/v0.3.5).
+
 To install the latest stable version of Move2Kube run the below command.
 
 ```console
