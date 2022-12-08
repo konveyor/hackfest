@@ -92,3 +92,5 @@ spec:
         dockerfile: "Dockerfile"
         context: "."
 ```
+The above steps can be replicated in the UI, by uploading the zip of the custom transformer as an input of type `customization`.
+For convenience we have provided the `customizations.zip` file in this exercise directory.
