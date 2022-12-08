@@ -1,0 +1,15 @@
+move2kube:
+  services:
+    config-utils:
+      enable: true
+    customers:
+      enable: true
+    gateway:
+      enable: true
+    orders:
+      enable: true
+  spawncontainers: true
+  transformers:
+    types:
+      - ContainerizedTransformer
+  transformerselector: ""
